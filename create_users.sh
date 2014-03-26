@@ -5,6 +5,7 @@ for dir in $(dirname $0)/*; do
     dir="${dir##*/}"
     useradd -m "$dir"
     usermod -G sudo "$dir"
+    chsh -s /bin/bash "$dir"
     mkdir -p /home/$dir/.ssh
     cat ./$dir/*.pub > /home/$dir/.ssh/authorized_keys
     chown -R $dir:$dir /home/$dir/.ssh
